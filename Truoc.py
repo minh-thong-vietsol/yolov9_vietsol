@@ -26,7 +26,7 @@ FONTS = cv.FONT_HERSHEY_COMPLEX
 
 # getting class names from classes.txt file / Load các class detect vào file class_names:
 class_names = []
-with open("yolo.names", "r") as f:
+with open("yolo.names", "r") as f: 
     class_names = [cname.strip() for cname in f.readlines()]
 #  setting up opencv net/ Set cấu hình, input file weight, cfg
 yoloNet = cv.dnn.readNet('yolov4-tiny-custom_final.weights', 'yolov4-tiny-custom.cfg')
