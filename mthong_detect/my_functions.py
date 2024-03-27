@@ -55,9 +55,10 @@ def extract_frames(video_path, output_folder):
 def move_files_to_folder(files, destination_folder):
     for file_path in files:
         try:
-            shutil.move(file_path, destination_folder)
+            shutil.copy(file_path, destination_folder)
         except Exception as e:
             print(f"Error moving file {file_path}: {str(e)}")
+            
 def split_data(image_folder, annotation_folder, output_folder, train_ratio=0.8, val_ratio=0.1, test_ratio=0.1):
     """
     Split data into train, validation, and test sets and move them to respective folders.
