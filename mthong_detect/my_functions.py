@@ -52,7 +52,12 @@ def extract_frames(video_path, output_folder):
     
     print(f"Finished extracting {frame_count} frames from {video_path} to {output_folder}")
 
-
+def move_files_to_folder(files, destination_folder):
+    for file_path in files:
+        try:
+            shutil.move(file_path, destination_folder)
+        except Exception as e:
+            print(f"Error moving file {file_path}: {str(e)}")
 def split_data(image_folder, annotation_folder, output_folder, train_ratio=0.8, val_ratio=0.1, test_ratio=0.1):
     """
     Split data into train, validation, and test sets and move them to respective folders.
@@ -66,12 +71,12 @@ def split_data(image_folder, annotation_folder, output_folder, train_ratio=0.8, 
     val_images, test_images, val_annotations, test_annotations = train_test_split(test_val_images, test_val_annotations, test_size=test_ratio/(val_ratio+test_ratio))
     
     # Create output folders
-    output_image_train_folder = os.path.join(output_folder, 'train', 'images')
-    output_image_val_folder = os.path.join(output_folder, 'val', 'images')
-    output_image_test_folder = os.path.join(output_folder, 'test', 'images')
-    output_annotation_train_folder = os.path.join(output_folder, 'train', 'annotations')
-    output_annotation_val_folder = os.path.join(output_folder, 'val', 'annotations')
-    output_annotation_test_folder = os.path.join(output_folder, 'test', 'annotations')
+    output_image_train_folder = os.path.join(output_folder, 'images', 'train')
+    output_image_val_folder = os.path.join(output_folder, 'images', 'val')
+    output_image_test_folder = os.path.join(output_folder, 'images', 'test')
+    output_annotation_train_folder = os.path.join(output_folder, 'labels', 'train')
+    output_annotation_val_folder = os.path.join(output_folder, 'labels', 'val')
+    output_annotation_test_folder = os.path.join(output_folder, 'labels', 'test')
     
     os.makedirs(output_image_train_folder, exist_ok=True)
     os.makedirs(output_image_val_folder, exist_ok=True)
