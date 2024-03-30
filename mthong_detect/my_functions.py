@@ -53,6 +53,12 @@ def extract_frames(video_path, output_folder):
     print(f"Finished extracting {frame_count} frames from {video_path} to {output_folder}")
 
 def move_files_to_folder(files, destination_folder):
+    """""
+    Move (copy) files to destination folder.
+    Args:
+        files (_type_): file paths
+        destination_folder (_type_): destination folder path
+    """
     for file_path in files:
         try:
             shutil.copy(file_path, destination_folder)
